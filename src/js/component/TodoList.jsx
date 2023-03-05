@@ -11,6 +11,13 @@ const TodoList = () => {
   const [value, setValue] = useState("");
   const [estado, setEstado] = useState(arr);
 
+  function addTasks (value) {
+    setEstado( prev => {
+        const newArr = [...prev,value]
+        return newArr;
+    })
+  }
+
   const handleKeyDown = (e) => {
     if(e.key === 'Enter'){
         addTasks(value);
@@ -18,21 +25,12 @@ const TodoList = () => {
     }
   }
 
-  function addTasks (value) {
+  const handleClickSpan = (elemento) => {
     setEstado( prev => {
-        const newArr = [...estado,value]
-        return newArr
+      const newArr2 = prev.filter((item,index) => index != prev.indexOf(elemento));
+      return newArr2;
     })
   }
-
-  const handleClickSpan = (event) => {
-    setEstado("");
-        // const newArr2 = estado.filter(item => item != event.parentElement());
-        // return event;
-    }
-
-//   useEffect(()=>{
-//   },[arr])
 
   return (
     <div id="container">
@@ -56,3 +54,8 @@ const TodoList = () => {
 };
 
 export default TodoList;
+
+// setEstado( prev => {
+//   const newArr2 = estado.filter(item => item != elemento);
+//   return newArr2;
+// })

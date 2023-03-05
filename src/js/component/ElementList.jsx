@@ -2,10 +2,9 @@ import React, { useState } from "react";
 
 const ElementList = (props) => {
 
-    
   return (
     <li>
-      <span onClick={e => console.log(e.target)}>
+      <span onClick={(e) => props.handleClickSpan(props.elemento)}>
         <i className="fa fa-trash"></i>
       </span>
       {props.elemento}
@@ -14,6 +13,3 @@ const ElementList = (props) => {
 };
 
 export default ElementList;
-
-
-// handleClickSpan(e.target.value)
