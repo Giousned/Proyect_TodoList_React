@@ -49,12 +49,16 @@ const TodoList = () => {
       />
       <ul>
         {estado.map((item,index)=>(
-            <ElementList key={index} elemento={item} handleClickSpan={handleClickSpan}/>
+            <ElementList key={item} elemento={item} handleClickSpan={handleClickSpan}/>
         ))}
       </ul>
-      <div className="todo-bottom">{estado.length} items left</div>
+      <div className="todo-bottom"> {(estado.length) ? ((estado.length > 1) ? `${estado.length} items left` : `${estado.length} item left`) : "No tasks! Add a new task!"}</div>
     </div>
   );
 };
 
 export default TodoList;
+
+// <ElementList key={index} elemento={item} handleClickSpan={handleClickSpan}/> 
+
+// ${estado.length} item left. Add new item.
