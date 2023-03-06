@@ -5,7 +5,7 @@ import ElementList from "./ElementList.jsx";
 
 import "../../styles/todoList.css";
 
-const arr = ["Eat","Drink"];
+const arr = [{id:"Eat"},{id:"Drink"}];
 
 const TodoList = () => {
   const [value, setValue] = useState("");
@@ -13,21 +13,25 @@ const TodoList = () => {
 
   function addTasks (value) {
     setEstado( prev => {
-        const newArr = [...prev,value]
+        const newObj = {id: value};
+        const newArr = [...prev,newObj];
         return newArr;
     })
   }
 
   const handleKeyDown = (e) => {
     if(e.key === 'Enter'){
+      if(value !== ""){
         addTasks(value);
         setValue("");
+      }
+      else alert("Escribe una tarea!");
     }
   }
 
   const handleClickSpan = (elemento) => {
     setEstado( prev => {
-      const newArr2 = prev.filter((item,index) => index != prev.indexOf(elemento));
+      const newArr2 = prev.filter((item) => item != elemento)
       return newArr2;
     })
   }
@@ -54,8 +58,3 @@ const TodoList = () => {
 };
 
 export default TodoList;
-
-// setEstado( prev => {
-//   const newArr2 = estado.filter(item => item != elemento);
-//   return newArr2;
-// })

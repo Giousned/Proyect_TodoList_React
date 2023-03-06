@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 
 const ElementList = (props) => {
 
   return (
     <li>
-      <span onClick={(e) => props.handleClickSpan(props.elemento)}>
+      <span onClick={() => props.handleClickSpan(props.elemento)}>
         <i className="fa fa-trash"></i>
       </span>
-      {props.elemento}
+      {props.elemento.id}
     </li>
   );
 };
