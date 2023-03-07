@@ -4,10 +4,10 @@ const ElementList = (props) => {
 
   return (
     <li>
-      <span onClick={() => props.handleClickSpan(props.elemento)}>
+      <span onClick={() => props.handleClickSpan(props.elemento.id)}>
         <i className="fa fa-trash"></i>
       </span>
-      {props.elemento.id}
+      {props.elemento.label}
     </li>
   );
 };

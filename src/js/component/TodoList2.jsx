@@ -5,18 +5,15 @@ import ElementList from "./ElementList.jsx";
 
 import "../../styles/todoList.css";
 
-const arr = [{id: 0, label: "Eat"},{id: 1, label: "Drink"}];
+const arr = [{id:"Eat"},{id:"Drink"}];
 
-let contador = 2;
-
-const TodoList = () => {
+const TodoList2 = () => {
   const [value, setValue] = useState("");
   const [estado, setEstado] = useState(arr);
 
   function addTasks (value) {
     setEstado( prev => {
-      contador += 1;
-        const newObj = {id: contador, label: value};
+        const newObj = {id: value};
         const newArr = [...prev,newObj];
         return newArr;
     })
@@ -32,9 +29,13 @@ const TodoList = () => {
     }
   }
 
+  // ESTA FUNCION DE BORRADO FUNCIONA BIEN PORQUE AL PULSAR EN EL BOTON LE PASAMOS UNA DIRECCION/POINTER
+  // DE DONDE ESTÁ GUARDADA ESA INFORMACION EN LA MEMORIA (ESTO SOLO PASA CON LOS OBJETOS Y ARRAYS)
+  // QUE SE GUARDAN COMO POINTERS (DIRECCIONES) Y NO LA INFORMACION/DATOS
+
   const handleClickSpan = (elemento) => {
     setEstado( prev => {
-      const newArr2 = prev.filter((item) => item.id != elemento)
+      const newArr2 = prev.filter((item) => item != elemento)
       return newArr2;
     })
   }
@@ -52,7 +53,7 @@ const TodoList = () => {
       />
       <ul>
         {estado.map((item)=>(
-            <ElementList key={item.id} elemento={item} handleClickSpan={handleClickSpan}/>
+            <ElementList key={item} elemento={item} handleClickSpan={handleClickSpan}/>
         ))}
       </ul>
       <div className="todo-bottom"> {(estado.length) ? ((estado.length > 1) ? `${estado.length} items left` : `${estado.length} item left`) : "No tasks! Add a new task!"}</div>
@@ -60,10 +61,4 @@ const TodoList = () => {
   );
 };
 
-export default TodoList;
-
-// SIEMPRE USAR ID UNICAS, INDEX NO ES EL MEJOR CASO
-// <ElementList key={index} elemento={item} handleClickSpan={handleClickSpan}/> 
-
-// INTENTAR NO USAR VARIABLES EXTERNAS, MEJOR CREAR ESTADO E IR CAMBIANDO, PORQUE LUEGO AL EXPORTAR Y USAR O GUARDAR EN 
-// LA MEMORIA Y RECUPERAR DATOS VA A FALLAR O PUEDE DAR FALLOS
+export default TodoList2;
